@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div id="app" class="calculator-wrapper">
+      <div class="calculator-top">
+        <div class="small-num">
+          {{ expression }}
+        </div>
+        <div class="big-num">
+          {{ current }}
+        </div>
+      </div>
+      <div class="calculator-bottom">
+        <div class="num-wrapper">
+          <div @click="append(7)" class="num">7</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(8)" class="num">8</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(9)" class="num">9</div>
+        </div>
+        <div class="num-symbol">
+          <div @click="divide()" class="symbol">
+            ÷
+          </div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(4)" class="num">4</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(5)" class="num">5</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(6)" class="num">6</div>
+        </div>
+        <div class="num-symbol">
+          <div @click="times()" class="symbol">
+            x
+          </div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(1)" class="num">1</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(2)" class="num">2</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(3)" class="num">3</div>
+        </div>
+        <div class="num-symbol">
+          <div @click="plus()" class="symbol">
+            +
+          </div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="append(0)" class="num">0</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="appendDoubleZero" class="num">00</div>
+        </div>
+        <div class="num-wrapper">
+          <div class="num" @click="dot">.</div>
+        </div>
+        <div class="num-symbol">
+          <div @click="minus" class="symbol">
+            -
+          </div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="clear" class="num num-letter">AC</div>
+        </div>
+        <div class="num-wrapper">
+          <div @click="back" class="num num-letter">⌫</div>
+        </div>
+        <div @click="equal" class="equal">
+          <div class="symbol">
+            =
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- JS數學庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.16.0/math.min.js"></script>
+    <script>
+      //千分位格式化
+      // Vue.filter("NumFormat", function(value) {
+      //   if (!value) return "";
+      //   var intPart = Number(value).toFixed(0);
+      //   var intPartFormat = intPart
+      //     .toString()
+      //     .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,");
+      //   return intPartFormat;
+      // });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          expression: "",
+          current: "",
+          previous: null,
+          opreator: null,
+          opreatorState: false,
+          equalState: false
+        },
+        methods: {
+          clear() {
+            this.expression = "";
+            this.current = "";
+          },
+          back() {
+            this.current = this.current.substring(0, this.current.length - 1);
+            this.expression = this.expression.substring(
+              0,
+              this.expression.length - 1
+            );
+          },
+          append(number) {
+            if (this.opreatorState) {
+              this.opreatorState = false;
+            }
+            this.current = `${this.current}${number}`;
+            this.expression = `${this.expression}${number}`;
+          },
+          printFn(value) {
+            const precision = 14;
+            return Number(math.format(value, precision));
+          }, //解決JS精度問題
+          appendDoubleZero() {
+            this.current = `${this.current}00`;
+            this.expression = `${this.expression}00`;
+          },
+          setPrevious() {
+            this.previous = this.current;
+            this.current = "";
+            this.opreatorState = true;
+            this.equalState = true;
+          },
+          divide() {
+            this.opreator = (a, b) => a / b;
+            this.setPrevious();
+            this.expression = `${this.expression} / `;
+          },
+          times() {
+            this.opreator = (a, b) => a * b;
+            this.setPrevious();
+            this.expression = `${this.expression} * `;
+          },
+          plus() {
+            this.opreator = (a, b) => a + b;
+            this.setPrevious();
+            this.expression = `${this.expression} + `;
+          },
+          minus() {
+            if (this.current === "") {
+              this.current = `-${this.current}`;
+            } else if(this.current){
+              this.opreator = (a, b) => a - b;
+              this.setPrevious();
+            }
+            this.expression = `${this.expression} - `;
+          },
+          dot() {
+            if (this.current.indexOf(".") === -1) {
+              this.append(".");
+            }
+          },
+          equal() {
+            if (this.equalState) {
+              const current = this.opreator(
+                parseFloat(this.previous),
+                parseFloat(this.current)
+              );
+              this.current = this.printFn(current);
+              this.expression = `${this.current}`;
+              this.previous = null;
+              this.equalState = false;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

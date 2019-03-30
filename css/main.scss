@@ -1,0 +1,138 @@
+$light_blue: #00c4ff;
+$top_blue: #041936;
+$bottom_blue: #062145;
+$font_color: #ffffff;
+$font_color1: #00c4ff;
+$gradient_left: #00c4ff;
+$gradient_right: #6c00ff;
+
+body {
+  font-family: Roboto, Regular;
+  background: #e8e8e8;
+}
+
+.calculator-wrapper {
+  margin: 0 auto;
+  width: 350px;
+  height: 525px;
+  @media (min-width: 414px) {
+    margin-top: 129px;
+  }
+}
+
+.calculator-top {
+  height: 109px;
+  padding-top: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  border-radius: 20px 20px 0 0;
+  text-align: right;
+  background: $top_blue;
+}
+
+.big-num {
+  height: 66px;
+  font-size: 56px;
+  color: $font_color;
+}
+
+.small-num {
+  height: 19px;
+  font-size: 16px;
+  color: $font_color1;
+}
+
+.big-num, .small-num{
+  overflow: hidden;
+}
+
+.calculator-bottom {
+  display: flex;
+  height: 416px;
+  padding-bottom: 16px;
+  border-radius: 0 0 20px 20px;
+  background: $bottom_blue;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.num-wrapper {
+  width: 87.5px;
+  height: 64px;
+  font-size: 16px;
+  color: $font_color;
+  line-height: 64px;
+  text-align: center;
+  margin-top: 16px;
+  .num {
+    margin: 0 auto;
+    width: 72px;
+    border-radius: 10px;
+    &:hover {
+      background: $light_blue;
+      transition: all 0.15s linear;
+    }
+  }
+}
+
+.num-symbol {
+  width: 87.5px;
+  height: 64px;
+  font-size: 16px;
+  color: $font_color;
+  line-height: 64px;
+  text-align: center;
+  margin-top: 16px;
+  box-sizing: border-box;
+  &:hover {
+    background: transpraent;
+  }
+}
+
+.symbol {
+  margin: 0 auto;
+  width: 72px;
+  border-radius: 10px;
+  background: $top_blue;
+  &:hover {
+    background: $light_blue;
+    transition: all 0.15s linear;
+  }
+}
+
+.equal {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 155px;
+  height: 64px;
+  margin: 16px 8px 0 11px;
+  line-height: 64px;
+  border-radius: 10px;
+  font-size: 24px;
+  text-align: center;
+  background: linear-gradient(left, $gradient_left, $gradient_right);
+  color: $font_color;
+  &:hover {
+    background: $gradient_left;
+    transition: all 0.2s linear;
+  }
+  .symbol {
+    margin: 0;
+    background: transparent;
+  }
+}
+
+.num-letter {
+  font-size: 24px;
+  color: $light_blue;
+  &:hover{
+      color: #fff;
+      transition: all .2s linear;
+  }
+}
+
+.equal,
+.symbol,
+.num {
+  cursor: pointer;
+}

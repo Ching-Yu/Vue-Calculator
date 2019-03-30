@@ -1,0 +1,157 @@
+body {
+  font-family: Roboto, Regular;
+  background: #e8e8e8;
+}
+
+.calculator-wrapper {
+  margin: 0 auto;
+  width: 350px;
+  height: 525px;
+}
+
+@media (min-width: 414px) {
+  .calculator-wrapper {
+    margin-top: 129px;
+  }
+}
+
+.calculator-top {
+  height: 109px;
+  padding-top: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  border-radius: 20px 20px 0 0;
+  text-align: right;
+  background: #041936;
+}
+
+.big-num {
+  height: 66px;
+  font-size: 56px;
+  color: #ffffff;
+}
+
+.small-num {
+  height: 19px;
+  font-size: 16px;
+  color: #00c4ff;
+}
+
+.big-num, .small-num {
+  overflow: hidden;
+}
+
+.calculator-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 416px;
+  padding-bottom: 16px;
+  border-radius: 0 0 20px 20px;
+  background: #062145;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.num-wrapper {
+  width: 87.5px;
+  height: 64px;
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 64px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.num-wrapper .num {
+  margin: 0 auto;
+  width: 72px;
+  border-radius: 10px;
+}
+
+.num-wrapper .num:hover {
+  background: #00c4ff;
+  -webkit-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+
+.num-symbol {
+  width: 87.5px;
+  height: 64px;
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 64px;
+  text-align: center;
+  margin-top: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.num-symbol:hover {
+  background: transpraent;
+}
+
+.symbol {
+  margin: 0 auto;
+  width: 72px;
+  border-radius: 10px;
+  background: #041936;
+}
+
+.symbol:hover {
+  background: #00c4ff;
+  -webkit-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+
+.equal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  width: 155px;
+  height: 64px;
+  margin: 16px 8px 0 11px;
+  line-height: 64px;
+  border-radius: 10px;
+  font-size: 24px;
+  text-align: center;
+  background: -webkit-gradient(linear, left top, right top, from(#00c4ff), to(#6c00ff));
+  background: linear-gradient(left, #00c4ff, #6c00ff);
+  color: #ffffff;
+}
+
+.equal:hover {
+  background: #00c4ff;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.equal .symbol {
+  margin: 0;
+  background: transparent;
+}
+
+.num-letter {
+  font-size: 24px;
+  color: #00c4ff;
+}
+
+.num-letter:hover {
+  color: #fff;
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.equal,
+.symbol,
+.num {
+  cursor: pointer;
+}
+/*# sourceMappingURL=main.css.map */
